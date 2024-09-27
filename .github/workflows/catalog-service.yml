@@ -26,6 +26,12 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
       - name: Set execute permission for mvnw
         run: chmod +x ./mvnw
 
