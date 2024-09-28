@@ -14,7 +14,7 @@ public abstract class AbstractIntegrationTest {
     int port;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         RestAssured.port = port;
     }
 }

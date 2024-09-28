@@ -10,5 +10,4 @@ public record PageResult<T>(
         boolean isFirst,
         boolean isLast,
         boolean hasNext,
-        boolean hasPrevious) {
-}
+        boolean hasPrevious) {}

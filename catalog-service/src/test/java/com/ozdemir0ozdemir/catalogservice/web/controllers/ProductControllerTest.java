@@ -1,17 +1,15 @@
 package com.ozdemir0ozdemir.catalogservice.web.controllers;
 
+import static io.restassured.RestAssured.given;
+
 import com.ozdemir0ozdemir.catalogservice.AbstractIntegrationTest;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
-import static io.restassured.RestAssured.given;
-
 @Sql("/test-data.sql")
 class ProductControllerTest extends AbstractIntegrationTest {
-
 
     @Test
     void shouldResultProducts() {
@@ -40,7 +38,9 @@ class ProductControllerTest extends AbstractIntegrationTest {
                 .body("code", Matchers.is("P100"))
                 .body("name", Matchers.is("Steve Jobs"))
                 .body("description", Matchers.is("Biografi"))
-                .body("imageUrl", Matchers.is("https://m.media-amazon.com/images/I/71sVQDj0SCL._AC_UF1000,1000_QL80_.jpg"))
+                .body(
+                        "imageUrl",
+                        Matchers.is("https://m.media-amazon.com/images/I/71sVQDj0SCL._AC_UF1000,1000_QL80_.jpg"))
                 .body("price", Matchers.is(20));
     }
 
@@ -57,8 +57,5 @@ class ProductControllerTest extends AbstractIntegrationTest {
                 .body("status", Matchers.is(404))
                 .body("title", Matchers.is("Product Not Found"))
                 .body("detail", Matchers.is("Product not found with code: " + code));
-
-
     }
-
 }
