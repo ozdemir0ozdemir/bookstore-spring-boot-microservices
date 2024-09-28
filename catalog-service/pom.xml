@@ -3,18 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-
     <parent>
-<!--        <groupId>com.ozdemir0ozdemir</groupId>-->
-<!--        <artifactId>spring-boot-microservices-course</artifactId>-->
-<!--        <version>0.0.1-SNAPSHOT</version>-->
-<!--        <relativePath />-->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
+        <relativePath/>
     </parent>
 
+    <groupId>com.ozdemir0ozdemir</groupId>
     <artifactId>catalog-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>catalog-service</name>
@@ -29,6 +25,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
+        <dockerImageName>ozdemir0ozdemir/bookstore-${project.artifactId}</dockerImageName>
     </properties>
 
     <dependencies>
@@ -116,6 +113,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
+                <configuration>
+                    <image>
+                        <name>${dockerImageName}</name>
+                    </image>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

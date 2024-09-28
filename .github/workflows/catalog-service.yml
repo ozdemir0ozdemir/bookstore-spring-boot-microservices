@@ -29,11 +29,17 @@ jobs:
       - name: Set execute permission for mvnw
         run: chmod +x ./mvnw
 
-      - name: Docker login
+      - name: Build with maven
+        run: ./mvnw -ntp verify
+
+      - if: ${{ github.ref == 'refs/heads/main'}}
+        name: Docker login
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build with maven
-        run: ./mvnw -ntp verify
+      - if: ${{ github.ref == 'refs/heads/main'}}
+        name: Build and Publish Docker Image
+        run: .\mvnw spring:boot-build-image -DskipTests
+          docker push ${{ secrets.DOCKER_HUB_USERNAME}}/bookstore-catalog-service
