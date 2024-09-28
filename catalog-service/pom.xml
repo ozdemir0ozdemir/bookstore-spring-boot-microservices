@@ -149,6 +149,8 @@
                         <includeOnlyProperty>^git.commit.message.full$</includeOnlyProperty>
                     </includeOnlyProperties>
                 </configuration>
+
+                
             </plugin>
 
             <!-- https://mvnrepository.com/artifact/com.diffplug.spotless/spotless-maven-plugin -->
