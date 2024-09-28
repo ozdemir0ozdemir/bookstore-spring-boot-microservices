@@ -10,15 +10,15 @@ vars:
 tasks:
   default:
     cmds:
-      - task: test
-  test:
+      - task: clean-verify
+  clean-verify:
     deps: [format]
     cmds:
       - "{{.MVNW}} clean verify"
 
   format:
     cmds:
-        - "{{.MVNW}} spotless:apply"
+      - "{{.MVNW}} spotless:apply"
 
   build:
     cmds:
@@ -30,8 +30,8 @@ tasks:
 
   stop_infra:
     cmds:
-      - docker compose -f "{{.INFRA_DC_FILE}}" stop
-      - docker compose -f "{{.INFRA_DC_FILE}}" rm -f
+      - "docker compose -f {{.INFRA_DC_FILE}} stop"
+      - "docker compose -f {{.INFRA_DC_FILE}} rm -f"
 
   restart_infra:
     cmds:

@@ -48,10 +48,9 @@ class ProductControllerTest extends AbstractIntegrationTest {
     void shouldReturnNotFoundWhenProductCodeNotExists() {
         String code = "invalid_product_code";
 
-        // FIXME: get() throws an exception and RestAssured cannot catch it then test fails instead of it should pass
         given().contentType(ContentType.JSON)
                 .when()
-                .get("/api/v1/products/{code}", code)
+                .get("api/v1/products/{code}", code)
                 .then()
                 .statusCode(404)
                 .body("status", Matchers.is(404))

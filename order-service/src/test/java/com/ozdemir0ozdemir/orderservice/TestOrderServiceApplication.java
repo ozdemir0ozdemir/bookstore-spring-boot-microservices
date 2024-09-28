@@ -1,11 +1,11 @@
-package com.ozdemir0ozdemir.catalogservice;
+package com.ozdemir0ozdemir.orderservice;
 
 import org.springframework.boot.SpringApplication;
 
-public class TestCatalogServiceApplication {
+public class TestOrderServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.from(CatalogServiceApplication::main)
+        SpringApplication.from(OrderServiceApplication::main)
                 .with(TestcontainersConfiguration.class)
                 .run(args);
     }
