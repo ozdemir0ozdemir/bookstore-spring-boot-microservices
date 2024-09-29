@@ -3,22 +3,22 @@ create sequence order_item_id_seq start with 1 increment by 50;
 
 create table orders
 (
-    id                           bigint not null default nextval('order_id_seq'),
-    order_number                 text   not null,
-    username                     text   not null,
-    customer_name                text   not null,
-    customer_email               text   not null,
-    customer_phone               text   not null,
-    delivery_address_line1       text   not null,
-    delivery_address_line2       text   not null,
-    delivery_address_city        text   not null,
-    delivery_address_state       text   not null,
-    delivery_address_zip_code    text   not null,
-    delivery_address_zip_country text   not null,
-    status                       text   not null,
-    comments                     text   not null,
-    created_at                   timestamp,
-    updated_at                   timestamp,
+    id                        bigint not null default nextval('order_id_seq'),
+    order_number              text   not null,
+    username                  text   not null,
+    customer_name             text   not null,
+    customer_email            text   not null,
+    customer_phone            text   not null,
+    delivery_address_line1    text   not null,
+    delivery_address_line2    text   not null,
+    delivery_address_city     text   not null,
+    delivery_address_state    text   not null,
+    delivery_address_zip_code text   not null,
+    delivery_address_country  text   not null,
+    status                    text   not null,
+    comments                  text,
+    created_at                timestamp,
+    updated_at                timestamp,
     primary key (id)
 );
 
