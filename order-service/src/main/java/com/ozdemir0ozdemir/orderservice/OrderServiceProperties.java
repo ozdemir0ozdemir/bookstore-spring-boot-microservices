@@ -8,4 +8,5 @@ public record OrderServiceProperties(
         String newOrdersQueue,
         String deliveredOrdersQueue,
         String cancelledOrdersQueue,
-        String errorOrdersQueue) {}
+        String errorOrdersQueue,
+        String catalogServiceUrl) {}

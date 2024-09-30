@@ -1,5 +1,6 @@
 package com.ozdemir0ozdemir.orderservice.web.exception;
 
+import com.ozdemir0ozdemir.orderservice.domain.InvalidOrderException;
 import com.ozdemir0ozdemir.orderservice.domain.OrderNotFoundException;
 import jakarta.annotation.Nullable;
 import java.net.URI;
@@ -43,6 +44,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         detail.setProperty("error_category", "Generic");
         detail.setProperty("timestamp", Instant.now());
 
+        return detail;
+    }
+
+    @ExceptionHandler(InvalidOrderException.class)
+    ProblemDetail handleInvalidOrderException(InvalidOrderException ex) {
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+        detail.setTitle("Invalid Order Creation Request!");
+        detail.setType(BAD_REQUEST_TYPE);
+        detail.setProperty("service", SERVICE_NAME);
+        detail.setProperty("error_category", "Generic");
+        detail.setProperty("timestamp", Instant.now());
         return detail;
     }
 

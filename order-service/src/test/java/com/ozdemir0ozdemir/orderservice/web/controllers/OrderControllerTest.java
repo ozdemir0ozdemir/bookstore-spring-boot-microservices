@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.ozdemir0ozdemir.orderservice.AbstractIT;
 import io.restassured.http.ContentType;
+import java.math.BigDecimal;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -17,32 +18,32 @@ class OrderControllerTest extends AbstractIT {
 
         @Test
         void shouldCreateOrderSuccessfully() {
+            mockGetProductByCode("P101", "Steve Jobs", BigDecimal.valueOf(20.0));
             String payload =
                     """
                         {
-                          "items": [
-                            {
-                              "code": "P101",
-                              "name": "Product",
-                              "price": 10.23,
-                              "quantity": 1
-                            }
-                          ],
-                          "customer": {
-                            "name": "Özdemir Özdemir",
-                            "email": "ozdemirozdemir@hotmail.com.tr",
-                            "phone": "23123123123"
-                          },
-                          "deliveryAddress": {
-                            "line1": "istanbul",
-                            "line2": "istanbul",
-                            "city": "istanbul",
-                            "state": "istanbul",
-                            "zip": "34000",
-                            "country": "türkiye"
-                          }
-                        }
-                        """;
+                           "customer": {
+                             "name": "Özdemir Özdemir",
+                             "email": "ozdemir@hotmail.com",
+                             "phone": "123123123"
+                           },
+                           "deliveryAddress": {
+                             "line1": "İstanbul",
+                             "city": "İstanbul",
+                             "state": "İstanbul",
+                             "zip": "34000",
+                             "country": "Türkiye"
+                           },
+                           "items": [
+                             {
+                               "code": "P101",
+                               "name": "Steve Jobs",
+                               "price": 20,
+                               "quantity": 1
+                             }
+                           ]
+                         }
+                    """;
 
             given().contentType(ContentType.JSON)
                     .body(payload)

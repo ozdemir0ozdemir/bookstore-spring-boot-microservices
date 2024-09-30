@@ -10,7 +10,7 @@ create table orders
     customer_email            text   not null,
     customer_phone            text   not null,
     delivery_address_line1    text   not null,
-    delivery_address_line2    text   not null,
+    delivery_address_line2    text,
     delivery_address_city     text   not null,
     delivery_address_state    text   not null,
     delivery_address_zip_code text   not null,
