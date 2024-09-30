@@ -1,7 +1,6 @@
 package com.ozdemir0ozdemir.orderservice.domain;
 
 import com.ozdemir0ozdemir.orderservice.domain.models.*;
-
 import java.time.Instant;
 import java.util.Set;
 import java.util.UUID;
@@ -16,8 +15,7 @@ public class OrderEventMapper {
                 getOrderItems(order),
                 order.getCustomer(),
                 order.getDeliveryAddress(),
-                Instant.now()
-        );
+                Instant.now());
     }
 
     static OrderDeliveredEvent buildOrderDeliveredEvent(OrderEntity order) {
@@ -27,8 +25,7 @@ public class OrderEventMapper {
                 getOrderItems(order),
                 order.getCustomer(),
                 order.getDeliveryAddress(),
-                Instant.now()
-        );
+                Instant.now());
     }
 
     static OrderCancelledEvent buildOrderCancelledEvent(OrderEntity order, String reason) {
@@ -39,8 +36,7 @@ public class OrderEventMapper {
                 order.getCustomer(),
                 order.getDeliveryAddress(),
                 reason,
-                Instant.now()
-        );
+                Instant.now());
     }
 
     static OrderErrorEvent buildOrderErrorEvent(OrderEntity order, String reason) {
@@ -51,13 +47,11 @@ public class OrderEventMapper {
                 order.getCustomer(),
                 order.getDeliveryAddress(),
                 reason,
-                Instant.now()
-        );
+                Instant.now());
     }
 
     private static Set<OrderItem> getOrderItems(OrderEntity order) {
-        return order.getItems()
-                .stream()
+        return order.getItems().stream()
                 .map(item -> new OrderItem(item.getCode(), item.getName(), item.getPrice(), item.getQuantity()))
                 .collect(Collectors.toSet());
     }

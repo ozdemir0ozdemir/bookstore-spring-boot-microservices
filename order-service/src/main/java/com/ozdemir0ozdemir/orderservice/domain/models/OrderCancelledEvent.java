@@ -10,5 +10,4 @@ public record OrderCancelledEvent(
         Customer customer,
         Address deliveryAddress,
         String reason,
-        Instant createdAt) {
-}
+        Instant createdAt) {}

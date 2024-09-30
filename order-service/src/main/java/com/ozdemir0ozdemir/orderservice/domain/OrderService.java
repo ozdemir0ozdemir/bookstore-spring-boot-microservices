@@ -4,20 +4,18 @@ import com.ozdemir0ozdemir.orderservice.domain.models.CreateOrderRequest;
 import com.ozdemir0ozdemir.orderservice.domain.models.CreateOrderResponse;
 import com.ozdemir0ozdemir.orderservice.domain.models.OrderCreatedEvent;
 import com.ozdemir0ozdemir.orderservice.domain.models.OrderStatus;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
 public class OrderService {
 
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
-    private static final List<String> DELIVERY_ALLOWED_COUNTRIES =
-            List.of("TÜRKİYE", "NORWAY", "USA", "UK");
+    private static final List<String> DELIVERY_ALLOWED_COUNTRIES = List.of("TÜRKİYE", "NORWAY", "USA", "UK");
 
     private final OrderRepository orderRepository;
     private final OrderValidator orderValidator;
@@ -54,21 +52,22 @@ public class OrderService {
     public void processNewOrders() {
         List<OrderEntity> orders = orderRepository.findByStatus(OrderStatus.NEW);
         log.info("Found {} new orders to process", orders.size());
-        for(var order: orders){
+        for (var order : orders) {
             this.process(order);
         }
     }
 
-    private void process(OrderEntity order){
-        try{
-            if(canBeDelivered(order)){
+    private void process(OrderEntity order) {
+        try {
+            if (canBeDelivered(order)) {
                 log.info("OrderNumber: {} can be delivered.", order.getOrderNumber());
                 orderRepository.updateOrderStatus(order.getOrderNumber(), OrderStatus.DELIVERED);
                 orderEventService.save(OrderEventMapper.buildOrderDeliveredEvent(order));
             } else {
                 log.info("OrderNumber: {} cannot be delivered.", order.getOrderNumber());
                 orderRepository.updateOrderStatus(order.getOrderNumber(), OrderStatus.CANCELLED);
-                orderEventService.save(OrderEventMapper.buildOrderCancelledEvent(order, "Can't deliver to the location"));
+                orderEventService.save(
+                        OrderEventMapper.buildOrderCancelledEvent(order, "Can't deliver to the location"));
             }
         } catch (RuntimeException ex) {
             log.info("Failed to process Order with orderNumber: {}", order.getOrderNumber());
@@ -79,6 +78,7 @@ public class OrderService {
 
     // FIXME: Dummy Logic to simulate the program. - canBeDelivered(OrderEntity order) -
     private boolean canBeDelivered(OrderEntity order) {
-        return DELIVERY_ALLOWED_COUNTRIES.contains(order.getDeliveryAddress().country().toUpperCase());
+        return DELIVERY_ALLOWED_COUNTRIES.contains(
+                order.getDeliveryAddress().country().toUpperCase());
     }
 }

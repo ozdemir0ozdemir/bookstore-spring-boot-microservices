@@ -2,11 +2,9 @@ package com.ozdemir0ozdemir.orderservice.domain;
 
 import com.ozdemir0ozdemir.orderservice.domain.models.OrderEventType;
 import jakarta.persistence.*;
+import java.time.Instant;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.Instant;
-
 
 @Entity
 @Table(name = "order_events")
@@ -30,15 +28,14 @@ public class OrderEventEntity {
     private String payload;
 
     @CreationTimestamp
-    @Column(name = "created_at",updatable = false, nullable = false)
+    @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    public OrderEventEntity() {
-    }
+    public OrderEventEntity() {}
 
     // Getters & Setters
     public Long getId() {

@@ -9,5 +9,4 @@ public record OrderCreatedEvent(
         Set<OrderItem> items,
         Customer customer,
         Address deliveryAddress,
-        Instant createdAt) {
-}
+        Instant createdAt) {}

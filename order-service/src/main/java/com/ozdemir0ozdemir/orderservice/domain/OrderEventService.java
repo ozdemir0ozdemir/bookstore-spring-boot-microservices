@@ -3,13 +3,12 @@ package com.ozdemir0ozdemir.orderservice.domain;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ozdemir0ozdemir.orderservice.domain.models.*;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
@@ -21,13 +20,16 @@ public class OrderEventService {
     private final OrderEventPublisher orderEventPublisher;
     private final ObjectMapper objectMapper;
 
-    OrderEventService(OrderEventRepository orderEventRepository, OrderEventPublisher orderEventPublisher, ObjectMapper objectMapper) {
+    OrderEventService(
+            OrderEventRepository orderEventRepository,
+            OrderEventPublisher orderEventPublisher,
+            ObjectMapper objectMapper) {
         this.orderEventRepository = orderEventRepository;
         this.orderEventPublisher = orderEventPublisher;
         this.objectMapper = objectMapper;
     }
 
-    void save(OrderCreatedEvent event){
+    void save(OrderCreatedEvent event) {
         var entity = new OrderEventEntity();
         entity.setEventId(event.eventId());
         entity.setEventType(OrderEventType.ORDER_CREATED);
@@ -37,7 +39,7 @@ public class OrderEventService {
         this.orderEventRepository.save(entity);
     }
 
-    void save(OrderCancelledEvent event){
+    void save(OrderCancelledEvent event) {
         var entity = new OrderEventEntity();
         entity.setEventId(event.eventId());
         entity.setEventType(OrderEventType.ORDER_CANCELLED);
@@ -47,7 +49,7 @@ public class OrderEventService {
         this.orderEventRepository.save(entity);
     }
 
-    void save(OrderDeliveredEvent event){
+    void save(OrderDeliveredEvent event) {
         var entity = new OrderEventEntity();
         entity.setEventId(event.eventId());
         entity.setEventType(OrderEventType.ORDER_DELIVERED);
@@ -57,7 +59,7 @@ public class OrderEventService {
         this.orderEventRepository.save(entity);
     }
 
-    void save(OrderErrorEvent event){
+    void save(OrderErrorEvent event) {
         var entity = new OrderEventEntity();
         entity.setEventId(event.eventId());
         entity.setEventType(OrderEventType.ORDER_PROCESSING_FAILED);
@@ -67,12 +69,12 @@ public class OrderEventService {
         this.orderEventRepository.save(entity);
     }
 
-    public void publishOrderEvents(){
+    public void publishOrderEvents() {
         Sort sort = Sort.by("createdAt").ascending();
         // Just a few entities.
         List<OrderEventEntity> events = orderEventRepository.findAll(sort);
         logger.info("Found {} Order Events to be published", events.size());
-        for(var event: events){
+        for (var event : events) {
             this.publishEvent(event);
             orderEventRepository.delete(event);
         }
@@ -110,7 +112,7 @@ public class OrderEventService {
         }
     }
 
-    private <T> T fromJsonPayload(String json, Class<T> type){
+    private <T> T fromJsonPayload(String json, Class<T> type) {
         try {
             return objectMapper.readValue(json, type);
         } catch (JsonProcessingException e) {
