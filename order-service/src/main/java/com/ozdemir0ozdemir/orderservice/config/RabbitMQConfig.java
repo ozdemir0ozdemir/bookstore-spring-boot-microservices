@@ -30,7 +30,7 @@ public class RabbitMQConfig {
 
     @Bean
     Binding newOrdersQueueBinding() {
-        return BindingBuilder.bind(newOrdersQueue()).to(exchange()).with("new-orders-key");
+        return BindingBuilder.bind(newOrdersQueue()).to(exchange()).with(orderServiceProperties.newOrdersQueue());
     }
 
     @Bean
@@ -41,7 +41,7 @@ public class RabbitMQConfig {
 
     @Bean
     Binding deliveredOrdersQueueBinding() {
-        return BindingBuilder.bind(deliveredOrdersQueue()).to(exchange()).with("delivered-orders-key");
+        return BindingBuilder.bind(deliveredOrdersQueue()).to(exchange()).with(orderServiceProperties.deliveredOrdersQueue());
     }
 
     @Bean
@@ -52,7 +52,7 @@ public class RabbitMQConfig {
 
     @Bean
     Binding cancelledOrdersQueueBinding() {
-        return BindingBuilder.bind(cancelledOrdersQueue()).to(exchange()).with("cancelled-orders-key");
+        return BindingBuilder.bind(cancelledOrdersQueue()).to(exchange()).with( orderServiceProperties.cancelledOrdersQueue());
     }
 
     @Bean
@@ -62,7 +62,7 @@ public class RabbitMQConfig {
 
     @Bean
     Binding errorOrdersQueueBinding() {
-        return BindingBuilder.bind(errorOrdersQueue()).to(exchange()).with("error-orders-key");
+        return BindingBuilder.bind(errorOrdersQueue()).to(exchange()).with(orderServiceProperties.errorOrdersQueue());
     }
 
     @Bean

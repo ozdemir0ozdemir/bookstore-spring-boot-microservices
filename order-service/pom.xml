@@ -24,6 +24,7 @@
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <dockerImageName>ozdemir0ozdemir/bookstore-${project.artifactId}</dockerImageName>
+        <shedlock.version>5.16.0</shedlock.version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,18 @@
             <artifactId>flyway-database-postgresql</artifactId>
         </dependency>
 
+        <!--  SHEDLOCK  -->
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-spring</artifactId>
+            <version>${shedlock.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-provider-jdbc-template</artifactId>
+            <version>${shedlock.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-spring-boot3</artifactId>
@@ -68,8 +81,6 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -132,8 +143,6 @@
             <artifactId>wiremock-testcontainers-module</artifactId>
             <version>1.0-alpha-14</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

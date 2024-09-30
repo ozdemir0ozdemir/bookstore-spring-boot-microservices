@@ -9,4 +9,6 @@ public record OrderServiceProperties(
         String deliveredOrdersQueue,
         String cancelledOrdersQueue,
         String errorOrdersQueue,
-        String catalogServiceUrl) {}
+        String catalogServiceUrl,
+        String publishOrderEventsJobCron,
+        String processNewOrdersJobCron) {}
