@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @ConfigurationPropertiesScan
 @EnableScheduling
-@EnableSchedulerLock(defaultLockAtMostFor = "120s", defaultLockAtLeastFor = "120s")
+@EnableSchedulerLock(defaultLockAtMostFor = "10s", defaultLockAtLeastFor = "10s")
 public class OrderServiceApplication {
 
     public static void main(String[] args) {

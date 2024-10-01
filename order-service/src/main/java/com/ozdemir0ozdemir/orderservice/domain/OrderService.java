@@ -1,10 +1,8 @@
 package com.ozdemir0ozdemir.orderservice.domain;
 
-import com.ozdemir0ozdemir.orderservice.domain.models.CreateOrderRequest;
-import com.ozdemir0ozdemir.orderservice.domain.models.CreateOrderResponse;
-import com.ozdemir0ozdemir.orderservice.domain.models.OrderCreatedEvent;
-import com.ozdemir0ozdemir.orderservice.domain.models.OrderStatus;
+import com.ozdemir0ozdemir.orderservice.domain.models.*;
 import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -47,6 +45,16 @@ public class OrderService {
         orderEventService.save(orderCreatedEvent);
 
         return new CreateOrderResponse(savedOrder.getOrderNumber());
+    }
+
+    public List<OrderSummary> findOrders(String username) {
+        return orderRepository.findByUserName(username);
+    }
+
+    public Optional<OrderDTO> findUserOrders(String username, String orderNumber) {
+        return orderRepository
+                .findByUserNameAndOrderNumber(username, orderNumber)
+                .map(OrderMapper::convertToDTO);
     }
 
     public void processNewOrders() {
