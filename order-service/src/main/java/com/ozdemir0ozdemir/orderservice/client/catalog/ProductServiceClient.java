@@ -29,7 +29,7 @@ public class ProductServiceClient {
 
         Product product = catalogServiceRestClient
                 .get()
-                .uri("api/v1/products/{code}", code)
+                .uri("/api/v1/products/{code}", code)
                 .retrieve()
                 .body(Product.class);
 

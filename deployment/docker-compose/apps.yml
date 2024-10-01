@@ -69,7 +69,7 @@ services:
 
   api-gateway:
     image: "ozdemir0ozdemir/bookstore-api-gateway"
-    container_name: "  api-gateway"
+    container_name: "api-gateway"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - CATALOG_SERVICE_URL=http://catalog-service:8081
