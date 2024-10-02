@@ -8,7 +8,7 @@ values
     ('P105', 'Harry Potter ve Zümrüdüanka Yoldaşlığı', 'Edebiyat', 'https://m.media-amazon.com/images/I/81Budsu1XBL._AC_UF1000,1000_QL80_.jpg', 20),
     ('P106', 'Harry Potter ve Melez Prens', 'Edebiyat', 'https://m.media-amazon.com/images/I/81DN1723hUL._AC_UF1000,1000_QL80_.jpg', 20),
     ('P107', 'Harry Potter ve Ölüm Yadigarları', 'Edebiyat', 'https://m.media-amazon.com/images/I/81aCMT1zKtL._AC_UF1000,1000_QL80_.jpg', 20),
-    ('P108', 'Yüzüklerin Efendisi: Yüzük Kardeşliği', 'Edebiyat', 'htps://m.media-amazon.com/images/I/81ewpuVnBKL._AC_UF1000,1000_QL80_.jpg', 20),
+    ('P108', 'Yüzüklerin Efendisi: Yüzük Kardeşliği', 'Edebiyat', 'https://m.media-amazon.com/images/I/81ewpuVnBKL._AC_UF1000,1000_QL80_.jpg', 20),
     ('P109', 'Yüzüklerin Efendisi: İki Kule', 'Edebiyat', 'https://m.media-amazon.com/images/I/8183Hwkgl6L._AC_UF1000,1000_QL80_.jpg', 20),
     ('P110', 'Yüzüklerin Efendisi: Kralın Dönüşü', 'Edebiyat', 'https://m.media-amazon.com/images/I/71tDovoHA+L._AC_UF1000,1000_QL80_.jpg', 20),
     ('P111', 'Game of Thrones', 'Edebiyat', 'https://m.media-amazon.com/images/I/71Jzezm8CBL._AC_UF1000,1000_QL80_.jpg', 20),

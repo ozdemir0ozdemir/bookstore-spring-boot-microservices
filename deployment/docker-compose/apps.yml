@@ -81,3 +81,17 @@ services:
       resources:
         limits:
           memory: 700m
+
+  bookstore-webapp:
+    image: "ozdemir0ozdemir/bookstore-webapp"
+    container_name: "bookstore-webapp"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - BOOKSTORE_API_GATEWAY_URL=http://api-gateway:8989
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 700m
